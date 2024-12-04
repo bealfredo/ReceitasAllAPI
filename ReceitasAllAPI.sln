@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35312.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReceitasAllAPI", "ReceitasAllAPI\ReceitasAllAPI.csproj", "{69EF61DD-FD33-482E-A113-14C383BFF6CF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{69EF61DD-FD33-482E-A113-14C383BFF6CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69EF61DD-FD33-482E-A113-14C383BFF6CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69EF61DD-FD33-482E-A113-14C383BFF6CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69EF61DD-FD33-482E-A113-14C383BFF6CF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {051CB5D3-FECD-4124-A3B8-54C96C742376}
+	EndGlobalSection
+EndGlobal
