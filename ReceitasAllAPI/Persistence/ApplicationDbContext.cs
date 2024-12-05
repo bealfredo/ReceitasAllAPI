@@ -11,6 +11,7 @@ namespace ReceitasAllAPI.Persistence
         public DbSet<Recipe> Recipes { get; set; }
         public DbSet<Step> Steps { get; set; }
         public DbSet<Ingredient> Ingredients { get; set; }
+        public DbSet<FavoriteRecipe> FavoriteRecipes { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
@@ -21,6 +22,14 @@ namespace ReceitasAllAPI.Persistence
         {
             base.OnModelCreating(modelBuilder);
             // Configuração de relacionamentos ou restrições adicionais
+
+            // não apagar o author ou a receita quando um favorito é apagado, no action
+            modelBuilder.Entity<FavoriteRecipe>()
+                .HasOne(fr => fr.Author)
+                .WithMany(a => a.FavoriteRecipes)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            
         }
     }
 }

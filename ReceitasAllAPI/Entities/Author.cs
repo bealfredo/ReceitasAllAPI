@@ -51,7 +51,7 @@ namespace ReceitasAllAPI.Entities
 
         //public virtual List<Cookbook> Cookbooks { get; set; } = new List<Cookbook>();
 
-        //public virtual List<FavoriteRecipe> FavoriteRecipes { get; set; } = new List<FavoriteRecipe>();
+        public virtual List<FavoriteRecipe> FavoriteRecipes { get; set; } = new List<FavoriteRecipe>();
 
 
 
