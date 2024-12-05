@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ReceitasAllAPI.Dtos
 {
-    public class RecipeDto
+    public class CookbookDto
     {
 
         [Required]
@@ -18,21 +18,10 @@ namespace ReceitasAllAPI.Dtos
         public string Image { get; set; }
 
         [Required]
-        public Difficulty Difficulty { get; set; }
-
-        [Required]
         public bool IsPrivate { get; set; }
-
-        [Required]
-        public int PreparationTimeInMinutes { get; set; }
-
-        [Required]
-        public string Rendimento { get; set; }
 
         public string AccentColor { get; set; }
 
-        public virtual List<StepDto> Steps { get; set; } = new List<StepDto>();
-
-        public virtual List<IngredientDto> Ingredients { get; set; } = new List<IngredientDto>();
+        public virtual List<RecipeCookbookDto> Recipes { get; set; } = new List<RecipeCookbookDto>();
     }
 }

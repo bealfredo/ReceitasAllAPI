@@ -81,9 +81,9 @@ namespace ReceitasAllAPI.Controllers
                 IsPrivate = recipeDto.IsPrivate,
                 PreparationTimeInMinutes = recipeDto.PreparationTimeInMinutes,
                 Rendimento = recipeDto.Rendimento,
-                DateAdded = recipeDto.DateAdded,
-                DateUpdated = recipeDto.DateUpdated,
-                AccentColor = recipeDto.AccentColor,
+                DateAdded = DateTime.Now,
+                DateUpdated = DateTime.Now,
+                AccentColor = recipeDto.AccentColor != null ? recipeDto.AccentColor : "#333",
                 AuthorId = author.ID,
                 Steps = new List<Step>(),
                 Ingredients = new List<Ingredient>()
@@ -179,7 +179,7 @@ namespace ReceitasAllAPI.Controllers
             recipe.IsPrivate = recipeDto.IsPrivate;
             recipe.PreparationTimeInMinutes = recipeDto.PreparationTimeInMinutes;
             recipe.Rendimento = recipeDto.Rendimento;
-            recipe.DateUpdated = recipeDto.DateUpdated;
+            recipe.DateUpdated = DateTime.Now;
             recipe.AccentColor = recipeDto.AccentColor;
 
             // update ingredients

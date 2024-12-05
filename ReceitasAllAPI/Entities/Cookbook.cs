@@ -1,16 +1,13 @@
-﻿using ReceitasAllAPI.Enums;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ReceitasAllAPI.Entities
 {
-    public class Recipe
+    public class Cookbook
     {
-
-        public Recipe()
+        public Cookbook()
         {
 
         }
-
         public int ID { get; set; }
 
         [Required]
@@ -27,20 +24,8 @@ namespace ReceitasAllAPI.Entities
         public string Image { get; set; }
 
         [Required]
-        [Display(Name = "Dificuldade")]
-        public Difficulty Difficulty { get; set; }
-
-        [Required]
-        [Display(Name = "Receita privada")]
+        [Display(Name = "Livro privado")]
         public bool IsPrivate { get; set; }
-
-        [Required]
-        [Display(Name = "Tempo de preparo (minutos)")]
-        public int PreparationTimeInMinutes { get; set; }
-
-        [Required]
-        [Display(Name = "Rendimento")]
-        public string Rendimento { get; set; }
 
         [Required]
         [Display(Name = "Data de criação")]
@@ -61,10 +46,6 @@ namespace ReceitasAllAPI.Entities
         public int AuthorId { get; set; }
 
         public virtual Author Author { get; set; }
-
-        public virtual List<Step> Steps { get; set; } = new List<Step>();
-
-        public virtual List<Ingredient> Ingredients { get; set; } = new List<Ingredient>();
 
         public virtual List<RecipeCookbook> RecipeCookbooks { get; set; } = new List<RecipeCookbook>();
     }
