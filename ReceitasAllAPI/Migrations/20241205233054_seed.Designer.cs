@@ -12,8 +12,8 @@ using ReceitasAllAPI.Persistence;
 namespace ReceitasAllAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241204192546_Migration9")]
-    partial class Migration9
+    [Migration("20241205233054_seed")]
+    partial class seed
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -84,6 +84,77 @@ namespace ReceitasAllAPI.Migrations
                     b.ToTable("Authors");
                 });
 
+            modelBuilder.Entity("ReceitasAllAPI.Entities.Cookbook", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("AccentColor")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("AuthorId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsPrivate")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("AuthorId");
+
+                    b.ToTable("Cookbooks");
+                });
+
+            modelBuilder.Entity("ReceitasAllAPI.Entities.FavoriteRecipe", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<int>("AuthorId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("RecipeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("AuthorId");
+
+                    b.HasIndex("RecipeId");
+
+                    b.ToTable("FavoriteRecipes");
+                });
+
             modelBuilder.Entity("ReceitasAllAPI.Entities.Ingredient", b =>
                 {
                     b.Property<int>("ID")
@@ -107,7 +178,7 @@ namespace ReceitasAllAPI.Migrations
 
                     b.HasIndex("RecipeId");
 
-                    b.ToTable("Ingredient");
+                    b.ToTable("Ingredients");
                 });
 
             modelBuilder.Entity("ReceitasAllAPI.Entities.Recipe", b =>
@@ -165,6 +236,35 @@ namespace ReceitasAllAPI.Migrations
                     b.ToTable("Recipes");
                 });
 
+            modelBuilder.Entity("ReceitasAllAPI.Entities.RecipeCookbook", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<int>("CookbookId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RecipeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("CookbookId");
+
+                    b.HasIndex("RecipeId");
+
+                    b.ToTable("RecipeCookbooks");
+                });
+
             modelBuilder.Entity("ReceitasAllAPI.Entities.Step", b =>
                 {
                     b.Property<int>("ID")
@@ -188,7 +288,37 @@ namespace ReceitasAllAPI.Migrations
 
                     b.HasIndex("RecipeId");
 
-                    b.ToTable("Step");
+                    b.ToTable("Steps");
+                });
+
+            modelBuilder.Entity("ReceitasAllAPI.Entities.Cookbook", b =>
+                {
+                    b.HasOne("ReceitasAllAPI.Entities.Author", "Author")
+                        .WithMany("Cookbooks")
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Author");
+                });
+
+            modelBuilder.Entity("ReceitasAllAPI.Entities.FavoriteRecipe", b =>
+                {
+                    b.HasOne("ReceitasAllAPI.Entities.Author", "Author")
+                        .WithMany("FavoriteRecipes")
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("ReceitasAllAPI.Entities.Recipe", "Recipe")
+                        .WithMany()
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Author");
+
+                    b.Navigation("Recipe");
                 });
 
             modelBuilder.Entity("ReceitasAllAPI.Entities.Ingredient", b =>
@@ -213,6 +343,25 @@ namespace ReceitasAllAPI.Migrations
                     b.Navigation("Author");
                 });
 
+            modelBuilder.Entity("ReceitasAllAPI.Entities.RecipeCookbook", b =>
+                {
+                    b.HasOne("ReceitasAllAPI.Entities.Cookbook", "Cookbook")
+                        .WithMany("RecipeCookbooks")
+                        .HasForeignKey("CookbookId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("ReceitasAllAPI.Entities.Recipe", "Recipe")
+                        .WithMany("RecipeCookbooks")
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Cookbook");
+
+                    b.Navigation("Recipe");
+                });
+
             modelBuilder.Entity("ReceitasAllAPI.Entities.Step", b =>
                 {
                     b.HasOne("ReceitasAllAPI.Entities.Recipe", "Recipe")
@@ -226,12 +375,23 @@ namespace ReceitasAllAPI.Migrations
 
             modelBuilder.Entity("ReceitasAllAPI.Entities.Author", b =>
                 {
+                    b.Navigation("Cookbooks");
+
+                    b.Navigation("FavoriteRecipes");
+
                     b.Navigation("Recipes");
+                });
+
+            modelBuilder.Entity("ReceitasAllAPI.Entities.Cookbook", b =>
+                {
+                    b.Navigation("RecipeCookbooks");
                 });
 
             modelBuilder.Entity("ReceitasAllAPI.Entities.Recipe", b =>
                 {
                     b.Navigation("Ingredients");
+
+                    b.Navigation("RecipeCookbooks");
 
                     b.Navigation("Steps");
                 });

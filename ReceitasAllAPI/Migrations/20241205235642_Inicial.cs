@@ -5,7 +5,7 @@
 namespace ReceitasAllAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class Migration4 : Migration
+    public partial class Inicial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

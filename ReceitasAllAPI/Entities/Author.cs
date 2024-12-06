@@ -52,29 +52,5 @@ namespace ReceitasAllAPI.Entities
         public virtual List<Cookbook> Cookbooks { get; set; } = new List<Cookbook>();
 
         public virtual List<FavoriteRecipe> FavoriteRecipes { get; set; } = new List<FavoriteRecipe>();
-
-
-
-        //public void Update(Author author)
-        //{
-        //    FirstName = author.FirstName;
-        //    LastName = author.LastName;
-        //    Nacionality = author.Nacionality;
-        //    Image = author.Image;
-        //    Bibliography = author.Bibliography;
-        //    Pseudonym = author.Pseudonym;
-        //    EmailContact = author.EmailContact;
-        //}
-
-        //public void Delete()
-        //{
-        //    FirstName = null;
-        //    LastName = null;
-        //    Nacionality = null;
-        //    Image = null;
-        //    Bibliography = null;
-        //    Pseudonym = null;
-        //    EmailContact = null;
-        //}
     }
 }
