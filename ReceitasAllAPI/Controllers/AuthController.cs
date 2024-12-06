@@ -74,7 +74,7 @@ namespace ReceitasAllAPI.Controllers
                 new Claim(ClaimTypes.Role, Admin ? "Admin" : "Author"),
                 new Claim("userId", userId)
             }),
-                Expires = DateTime.UtcNow.AddHours(1),
+                Expires = DateTime.UtcNow.AddHours(24),
                 Issuer = "localhost",
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };

@@ -7,6 +7,7 @@ namespace ReceitasAllAPI.Migrations
     /// <inheritdoc />
     public partial class seed : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             var baseId = 100;
@@ -388,6 +389,7 @@ namespace ReceitasAllAPI.Migrations
             ");
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
 

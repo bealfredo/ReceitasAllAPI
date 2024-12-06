@@ -12,8 +12,8 @@ using ReceitasAllAPI.Persistence;
 namespace ReceitasAllAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241206011056_initial")]
-    partial class initial
+    [Migration("20241206012806_seed")]
+    partial class seed
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
