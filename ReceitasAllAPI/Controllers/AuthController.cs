@@ -37,7 +37,7 @@ namespace ReceitasAllAPI.Controllers
         /// <response code="500">Erro interno</response>
         /// <remarks>
         /// Este endpoint é responsável por autenticar um autor (usuário da API) e gerar um token JWT para ser utilizado nas requisições subsequentes.
-        /// O token tem validade de 24 horas.
+        /// O token tem validade de 24 horas, e é retornado no header da resposta.
         /// </remarks>
         [AllowAnonymous]
         [HttpPost("login")]

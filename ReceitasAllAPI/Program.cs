@@ -22,7 +22,7 @@ builder.Services.AddSwaggerGen(c =>
         new Microsoft.OpenApi.Models.OpenApiInfo
         {
             Title = "ReceitasAllApi",
-            Description = "API para gerenciamento de receitas",
+            Description = "A aplicação consiste em um sistema que simula um blog de receitas. O sistema permite que o usuário crie uma conta, faça login, crie, edite e exclua suas receitas. Além disso, o usuário pode visualizar as receitas públicas de outros usuários e favoritar essas receitas. Além disso, o usuário pode visualizar e desfavoritar receitas favoritas.\r\n\r\nTambém é possível criar, editar e excluir livro de receitas, que são uma coleção de receitas do usuário, permitindo que um autor crie várias coleções de receitas, organizando suas criações em diferentes livros. O usuário pode adicionar e remover receitas de um livro de receitas, além de visualizar as receitas de um livro de receitas seu ou de outro usuário.\r\n\r\nLink para o repositório: [ReceitasAllAPI](https://github.com/bealfredo/ReceitasAllAPI)",
             Contact = new OpenApiContact
             {
                 Name = "ReceitasAllAPI",
