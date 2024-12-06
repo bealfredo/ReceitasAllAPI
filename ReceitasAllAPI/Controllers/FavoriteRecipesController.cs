@@ -9,7 +9,6 @@ using System;
 using System.Linq;
 using System.Linq.Expressions;
 
-#nullable enable
 namespace ReceitasAllAPI.Controllers
 {
     /// <summary>
@@ -49,6 +48,11 @@ namespace ReceitasAllAPI.Controllers
         /// Este endpoint permite que um usuário autenticado favorite uma receita.
         /// Apenas receitas públicas podem ser favoritas e um mesmo usuário não pode favoritar a mesma receita mais de uma vez.
         /// </remarks>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpPost("{id}")]
         public IActionResult Favorite(int id)
         {
@@ -102,6 +106,10 @@ namespace ReceitasAllAPI.Controllers
         /// Este endpoint permite que um usuário autenticado remova uma receita dos seus favoritos.
         /// Apenas receitas previamente favoritada pelo usuário podem ser removidas.
         /// </remarks>
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpDelete("{id}")]
         public IActionResult Unfavorite(int id)
         {
@@ -142,53 +150,55 @@ namespace ReceitasAllAPI.Controllers
         /// Este endpoint retorna todas as receitas favoritas do usuário autenticado que não são privadas.
         /// Cada receita é acompanhada das informações do autor da receita.
         /// 
-        /// Retorno:
-        ///
-        /// <code>
-        /// [
-        ///     {
-        ///         "id": 23,
-        ///         "title": "string",
-        ///         "description": "string",
-        ///         "image": "http://localhost:5074/swagger/index.html",
-        ///         "difficulty": 1,
-        ///         "isPrivate": false,
-        ///         "preparationTimeInMinutes": 0,
-        ///         "rendimento": "string",
-        ///         "dateAdded": "2024-12-05T10:23:35.3368059",
-        ///         "dateUpdated": "2024-12-05T00:00:00",
-        ///         "accentColor": "string",
-        ///         "author": {
-        ///             "id": 8,
-        ///             "userName": "string",
-        ///             "admin": false,
-        ///             "firstName": "avemaria",
-        ///             "lastName": "avemaria2",
-        ///             "nacionality": "avemaria3",
-        ///             "image": "avemaria4",
-        ///             "bibliography": "avemaria5",
-        ///             "pseudonym": "avemaria6",
-        ///             "emailContact": "user@avemaria.com"
-        ///         },
-        ///         "steps": [
-        ///             {
-        ///                 "id": 1030,
-        ///                 "order": 0,
-        ///                 "value": "string"
-        ///             }
-        ///         ],
-        ///         "ingredients": [
-        ///             {
-        ///                 "id": 1029,
-        ///                 "order": 0,
-        ///                 "value": "string"
-        ///             }
-        ///         ]
-        ///     }
-        /// ]
-        /// </code>
+        /// Exemplo de retorno:
         /// 
+        ///
+        ///     [
+        ///         {
+        ///             "id": 101,
+        ///             "title": "Bolo de Chocolate",
+        ///             "description": "Como não pensar em um bolo de chocolate com morango e não salivar? O bolo sensação é o doce que conquista o paladar de muita gente, já que o morango quebra o gosto adocicado do chocolate.",
+        ///             "image": "",
+        ///             "difficulty": 1,
+        ///             "isPrivate": false,
+        ///             "preparationTimeInMinutes": 45,
+        ///             "rendimento": "8 porções",
+        ///             "dateAdded": "2024-10-03T08:15:33",
+        ///             "dateUpdated": "2024-10-04T09:12:33",
+        ///             "accentColor": "#8B4513",
+        ///             "author": {
+        ///                 "id": 2,
+        ///                 "userName": "mary",
+        ///                 "admin": false,
+        ///                 "firstName": "Maria",
+        ///                 "lastName": "da Silva",
+        ///                 "nacionality": "Brasileira",
+        ///                 "image": "",
+        ///                 "bibliography": "Uma mulher que adora cozinhar e compartilhar suas receitas",
+        ///                 "pseudonym": "mary",
+        ///                 "emailContact": "maria@gmail.com"
+        ///             },
+        ///             "steps": [
+        ///                 {
+        ///                     "id": 1,
+        ///                     "order": 1,
+        ///                     "value": "Em uma batedeira, bata as claras em neve."
+        ///                 }
+        ///             ],
+        ///             "ingredients": [
+        ///                 {
+        ///                     "id": 1,
+        ///                     "order": 1,
+        ///                     "value": "2 xícaras de farinha de trigo"
+        ///                 }
+        ///             ]
+        ///         }
+        ///     ]
+        ///     
         /// </remarks>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [HttpGet]
         public IActionResult GetMyFavorites()
         {

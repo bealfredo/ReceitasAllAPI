@@ -10,12 +10,19 @@ using ReceitasAllAPI.Persistence;
 
 namespace ReceitasAllAPI.Controllers
 {
+    /// <summary>
+    /// Controlador de autenticação
+    /// </summary>
     [Route("api/auth")]
     [ApiController]
     public class AuthController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
+        /// <summary>
+        /// Construtor do controlador de autenticação
+        /// </summary>
+        /// <param name="context"></param>
         public AuthController(ApplicationDbContext context)
         {
             _context = context;
@@ -28,6 +35,10 @@ namespace ReceitasAllAPI.Controllers
         /// <response code="200">Retorna o token de autenticação</response>
         /// <response code="401">Credenciais inválidas</response>
         /// <response code="500">Erro interno</response>
+        /// <remarks>
+        /// Este endpoint é responsável por autenticar um autor (usuário da API) e gerar um token JWT para ser utilizado nas requisições subsequentes.
+        /// O token tem validade de 24 horas.
+        /// </remarks>
         [AllowAnonymous]
         [HttpPost("login")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -83,6 +94,9 @@ namespace ReceitasAllAPI.Controllers
         }
     }
 
+    /// <summary>
+    /// Entidade de requisição de login
+    /// </summary>
     public class LoginRequest
     {
         public string Username { get; set; }

@@ -72,7 +72,7 @@ namespace ReceitasAllAPI.Migrations
                 INSERT INTO Authors (ID, UserName, PasswordHash, Admin, FirstName, LastName, Nacionality, Image, Bibliography, Pseudonym, EmailContact)
                 VALUES (
                     {userId2},
-                    'mary',
+                    'maria',
                     '#Maria5000',
                     'false',
                     'Maria', 
@@ -80,7 +80,7 @@ namespace ReceitasAllAPI.Migrations
                     'Brasileira', 
                     'https://img.freepik.com/fotos-premium/cozinheira-muito-feliz-mulher-com-fundo-branco_1042814-56143.jpg', 
                     'Uma mulher que adora cozinhar e compartilhar suas receitas',
-                    'mary', 
+                    'maria', 
                     'maria@gmail.com'
                 );
                 SET IDENTITY_INSERT Authors OFF;
@@ -93,7 +93,7 @@ namespace ReceitasAllAPI.Migrations
                 INSERT INTO Authors (ID, UserName, PasswordHash, Admin, FirstName, LastName, Nacionality, Image, Bibliography, Pseudonym, EmailContact)
                 VALUES (
                     {userId3},
-                    'jota',
+                    'jose',
                     '#Jose5000',
                     'false',
                     'Jose', 
@@ -101,7 +101,7 @@ namespace ReceitasAllAPI.Migrations
                     'Brasileiro', 
                     'https://img.freepik.com/fotos-premium/um-homem-cozinhando-comida-em-uma-frigideira-em-uma-cozinha_1072138-193393.jpg', 
                     'Um homem que descobriu o prazer de cozinhar e compartilhar suas receitas',
-                    'jota', 
+                    'jose', 
                     'jose@gmail.com'
                 );
                 SET IDENTITY_INSERT Authors OFF;
