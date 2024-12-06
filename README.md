@@ -26,8 +26,11 @@ A aplicação foi desenvolvida utilizando API Web do Asp.Net Core com Entity Fra
 5. No Package Manager Console, execute `dotnet add package Microsoft.EntityFrameworkCore.SqlServer` para instalar o pacote do Entity Framework
 6. Agora execute `dotnet add package Microsoft.EntityFrameworkCore.Tools` para instalar as ferramentas do Entity Framework
 7. Execute `dotnet tool install --global dotnet-ef` para instalar a ferramenta do Entity Framework
-8. Execute `dotnet ef database update` para criar o banco de dados e as tabelas, assim como popular o banco de dados com dados de exemplo.
-9. Na interface do Visual Studio, execute o projeto. Pode ser necessário mudar para http ao invés de https para que o Swagger funcione corretamente.
+8. Em seguida, execute `dotnet build` para compilar o projeto
+9. Execute `dotnet ef database update` para criar o banco de dados e as tabelas, assim como popular o banco de dados com dados de exemplo.
+10. Na interface do Visual Studio, execute o projeto. Pode ser necessário mudar para http ao invés de https para que o Swagger funcione corretamente.
+
+A partir desse ponto, a aplicação estará rodando e você poderá acessar o Swagger para testar as rotas da API. 
 
 
 ### Seed do Banco de Dados
